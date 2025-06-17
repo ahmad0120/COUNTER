@@ -1,31 +1,33 @@
-import { useState } from "react";
-function Counter() {
+import React, { useState } from "react";
+
+export default function CounterCard() {
   const [count, setCount] = useState(0);
- return (
-   <div className="bg-green-300 flex justify-center items-center h-screen flex-col">
-  <h1 className="mb-4 text-2xl font-bold">Count: {count}</h1>
-  <div className="flex space-x-4">
-    <button
-      onClick={() => setCount(count + 1)}
-      className="px-4 py-2 bg-green-500 text-white rounded" >
-      Increase
-    </button>
-    <button
-      onClick={() => {
-        if (count > 0) {
-          setCount(count - 1);
-        }
-      }}
-      className={`px-4 py-2 rounded text-white ${count > 0 ? 'bg-red-500' : 'bg-gray-400 cursor-not-allowed'}`}
-      disabled={count === 0}
-    >
-      Decrease
-    </button>
-  </div>
-</div>
 
+  const increment = () => setCount((prev) => prev + 1);
+  const decrement = () => {
+    if (count > 0) setCount((prev) => prev - 1);
+  };
 
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-md rounded-xl p-8 w-96 text-center space-y-6">
+        <h1 className="text-3xl font-bold text-gray-800">Counter</h1>
+        <div className="text-6xl font-semibold text-blue-600">{count}</div>
+        <div className="flex justify-center gap-6">
+          <button
+            onClick={decrement}
+            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full text-lg transition-all"
+          >
+            −
+          </button>
+          <button
+            onClick={increment}
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full text-lg transition-all"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
-
-export default Counter;
